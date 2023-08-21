@@ -5,33 +5,44 @@ import jdbc.DbException;
 
 import javax.swing.plaf.nimbus.State;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Program {
     public static void main(String[] args) throws IOException {
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         Connection conn = null;
-        Statement st = null;
-        ResultSet rs = null;
+        PreparedStatement ps = null;
 
         try {
-            conn = DB.getConnection();//conecta ao banco de dados
+            conn = DB.getConnection();
+            //prepara uma insercão
+            ps = conn.prepareStatement("INSERT INTO seller (Name, Email, Birthdate, BaseSalary, DepartmentId) VALUES (?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);//placeholder para inserir valores e retorna o ID
+            ps.setString(1, "João da Silva");
+            ps.setString(2, "js@gmail.com");
+            ps.setDate(3, new java.sql.Date(sdf.parse("01/02/1975").getTime()));
+            ps.setDouble(4, 3000.00);
+            ps.setInt(5, 2);
 
-            st = conn.createStatement(); //instancia objeto do tipo statemente, para realizar querys
+            int rowsAffected = ps.executeUpdate();
 
-            rs =  st.executeQuery("select * from department");// realiza a query
-
-            while (rs.next()){//enquanto houver itens
-                System.out.println(rs.getInt("Id") + "|" + rs.getString("Name"));//mostra o id e o name
+            if(rowsAffected > 0){
+                ResultSet rs = ps.getGeneratedKeys();
+                while (rs.next()){
+                    int id = rs.getInt(1);
+                    System.out.println("Done! ID = "+id);
+                }
+            }else {
+                System.out.println("No rows affected");
             }
-        }catch (SQLException e){
+
+        }catch (SQLException | ParseException e){
             e.printStackTrace();
-        }finally {
-            DB.closeResultSet(rs);
-            DB.closeStatement(st);
+        } finally {
+            DB.closeStatement(ps);
             DB.closeConnection();
         }
 
