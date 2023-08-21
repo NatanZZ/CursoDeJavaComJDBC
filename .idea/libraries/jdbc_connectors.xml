@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="jdbc-connectors">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/build/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/demo/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/generated/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/legacy/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/main/core-api/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/main/core-impl/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/main/protocol-impl/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/main/user-api/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/main/user-impl/java" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors/src/test/java" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../../../java-libs/jdbc-connectors" recursive="false" />
+  </library>
+</component>
